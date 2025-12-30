@@ -1,20 +1,36 @@
 --==================================================
--- F4X - OBJECT TOOL (EXECUTOR / FINAL COMPACT)
+-- F4X - OBJECT TOOL (EXECUTOR SAFE / GITHUB READY)
 --==================================================
+
+-- ===== SAFE START (CRITICAL) =====
+repeat task.wait() until game:IsLoaded()
 
 local Players = game:GetService("Players")
 local UIS = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local CoreGui = game:GetService("CoreGui")
 
-local lp = Players.LocalPlayer
-local cam = workspace.CurrentCamera
-local mouse = lp:GetMouse()
+local lp
+repeat
+	lp = Players.LocalPlayer
+	task.wait()
+until lp
 
---================ CLEAN =================
-pcall(function()
-	CoreGui:FindFirstChild("F4X_GUI"):Destroy()
-end)
+local cam
+repeat
+	cam = workspace.CurrentCamera
+	task.wait()
+until cam
+
+local mouse
+repeat
+	mouse = lp:GetMouse()
+	task.wait()
+until mouse
+
+-- ===== CLEAN PREVIOUS GUI =====
+local old = CoreGui:FindFirstChild("F4X_GUI")
+if old then old:Destroy() end
 
 --================ GUI =================
 local gui = Instance.new("ScreenGui")
@@ -143,10 +159,7 @@ button("Y -",220,180,70,40,function() if selected then selected.CFrame *= CFrame
 
 --================ SIZE =================
 button("WIDTH +", 30,240,90,40,function()
-	if selected then
-		selected.Size += Vector3.new(1,0,1)
-		updateInfo()
-	end
+	if selected then selected.Size += Vector3.new(1,0,1) updateInfo() end
 end)
 
 button("WIDTH -", 130,240,90,40,function()
@@ -158,15 +171,16 @@ button("WIDTH -", 130,240,90,40,function()
 end)
 
 button("HEIGHT +", 30,290,90,40,function()
-	if selected then
-		selected.Size += Vector3.new(0,1,0)
-		updateInfo()
-	end
+	if selected then selected.Size += Vector3.new(0,1,0) updateInfo() end
 end)
 
 button("HEIGHT -", 130,290,90,40,function()
 	if selected then
-		selected.Size = Vector3.new(selected.Size.X, math.max(0.5,selected.Size.Y-1), selected.Size.Z)
+		selected.Size = Vector3.new(
+			selected.Size.X,
+			math.max(0.5,selected.Size.Y-1),
+			selected.Size.Z
+		)
 		updateInfo()
 	end
 end)
@@ -243,7 +257,7 @@ end)
 local tt = Instance.new("TextButton", panel)
 tt.Size = UDim2.new(1,-28,0,38)
 tt.Position = UDim2.new(0,14,1,-40)
-tt.Text = "@Xeno_Scripts"
+tt.Text = "@texto"
 tt.Font = Enum.Font.GothamBold
 tt.TextSize = 15
 tt.TextColor3 = Color3.fromRGB(220,220,220)
@@ -273,7 +287,6 @@ end)
 
 tt.MouseButton1Click:Connect(function()
 	if setclipboard then
-		setclipboard("https://www.tiktok.com/@Xeno_Scripts")
+		setclipboard("https://www.tiktok.com/@texto")
 	end
 end)
-c
