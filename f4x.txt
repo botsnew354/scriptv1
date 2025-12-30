@@ -257,7 +257,7 @@ end)
 local tt = Instance.new("TextButton", panel)
 tt.Size = UDim2.new(1,-28,0,38)
 tt.Position = UDim2.new(0,14,1,-40)
-tt.Text = "@texto"
+tt.Text = "@Xeno_Scripts"
 tt.Font = Enum.Font.GothamBold
 tt.TextSize = 15
 tt.TextColor3 = Color3.fromRGB(220,220,220)
@@ -287,6 +287,7 @@ end)
 
 tt.MouseButton1Click:Connect(function()
 	if setclipboard then
-		setclipboard("https://www.tiktok.com/@texto")
+		setclipboard("https://www.tiktok.com/@Xeno_Scripts")
 	end
 end)
+
