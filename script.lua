@@ -1,6 +1,3 @@
---[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
 --==================================================
 -- F4X - OBJECT TOOL (EXECUTOR SAFE / GITHUB READY)
 --==================================================
